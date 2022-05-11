@@ -35,7 +35,8 @@ public class UserServiceTest {
     }
 
     @Test
-    public void saveUser() {
+    public void
+    saveUser() {
         try {
             userService.dropUsersTable();
             userService.createUsersTable();
