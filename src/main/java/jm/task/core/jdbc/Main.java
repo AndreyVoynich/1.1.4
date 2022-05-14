@@ -18,7 +18,8 @@ public class Main {
 
         userService.removeUserById(3);
         userService.getAllUsers();
-         userService.cleanUsersTable();
-         userService.dropUsersTable();
+        System.out.println(userService.getAllUsers());
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
     }
 }
