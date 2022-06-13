@@ -12,11 +12,19 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class Util {
+
+    private static SessionFactory factory;
+
+    private static Connection connection;
+
+    private Util() {
+    }
+
     private static final String URL = "jdbc:mysql://localhost:3306/sqlbase";
     private static final String PASSWORD = "root";
     private static final String USER = "root";
-    private static Connection connection;
-    private static SessionFactory factory;
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DIALECT = "org.hibernate.dialect.MySQLDialect";
 
     public static Connection getConnection() {
         try {
@@ -35,11 +43,11 @@ public class Util {
             try {
                 Properties properties = new Properties();
 
-                properties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                properties.put(Environment.URL, "jdbc:mysql://localhost:3306/java_dmeo?useSSL=false");
-                properties.put(Environment.USER, "root");
-                properties.put(Environment.PASS, "root");
-                properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
+                properties.put(Environment.URL, URL);
+                properties.put(Environment.USER, USER);
+                properties.put(Environment.PASS, PASSWORD);
+                properties.put(Environment.DRIVER, DRIVER);
+                properties.put(Environment.DIALECT, DIALECT);
 
                 factory = new Configuration()
                         .addProperties(properties)

@@ -6,7 +6,10 @@ import jm.task.core.jdbc.util.Util;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class UserDaoJDBCImpl extends Util implements UserDao {
+public class UserDaoJDBCImpl implements UserDao {
+
+    public UserDaoJDBCImpl() {
+    }
 
     private final   String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS users (" +
            "  id BIGINT NOT NULL AUTO_INCREMENT," +
@@ -14,10 +17,6 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
            "  LastName VARCHAR(45) NOT NULL," +
            "  Age TINYINT NOT NULL," +
            "  PRIMARY KEY (id))";
-
-    public UserDaoJDBCImpl() {
-
-    }
 
     public void createUsersTable() {
         try (Statement statement = Util.getConnection().createStatement()) {
@@ -48,7 +47,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
         }
     }
 
-    public User removeUserById(long id) {
+    public void removeUserById(long id) {
         try (PreparedStatement preparedStatement =
                     Util.getConnection().prepareStatement("DELETE FROM users WHERE ID = ?")) {
             preparedStatement.setLong(1, id);
